@@ -195,7 +195,7 @@ function SystemScalerBase({
           </div>
           <div className="h-12 flex items-end gap-0.5">
             {history.map((h, i) => (
-              <div key={i} className={cn("flex-1 rounded-full min-w-[2px]", h.latency > targetLatency ? "bg-red-200" : "bg-emerald-100")} style={{ height: `${Math.min(h.latency / 5, 100)}%` }} />
+              <div key={i} className={cn("flex-1 rounded-full min-w-0.5", h.latency > targetLatency ? "bg-red-200" : "bg-emerald-100")} style={{ height: `${Math.min(h.latency / 5, 100)}%` }} />
             ))}
           </div>
         </div>
