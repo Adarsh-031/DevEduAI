@@ -52,7 +52,7 @@ export default function LandingPage() {
           <Link href="/chat" className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">
             Open Chat
           </Link>
-          <a href="#" className="p-2 text-zinc-500 hover:bg-zinc-100 rounded-full transition-all">
+          <a href="https://github.com/Adarsh-031/DevEduAI" className="p-2 text-zinc-500 hover:bg-zinc-100 rounded-full transition-all">
             <Github className="w-5 h-5" />
           </a>
         </div>
@@ -66,7 +66,7 @@ export default function LandingPage() {
               <Sparkles className="w-3 h-3" />
               Tambo Hackathon 2026
             </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-zinc-900 to-zinc-600">
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8 bg-clip-text text-transparent bg-linear-to-b from-zinc-900 to-zinc-600">
               Interactive Engineering <br /> Mastery.
             </h1>
             <p className="text-xl text-zinc-600 mb-10 max-w-2xl mx-auto leading-relaxed">
