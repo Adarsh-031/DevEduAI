@@ -1,131 +1,81 @@
-# Tambo Template
+# DevEdu AI 🚀
+### Interactive Engineering Mastery through AI
 
-This is a starter NextJS app with Tambo hooked up to get your AI app development started quickly.
+**DevEdu AI** is a next-generation educational platform built for the **Tambo Global Hackathon 2026**. It transforms traditional, static learning into a dynamic, sensory, and interactive experience by leveraging the **Tambo SDK** to bridge the gap between AI chat and rich client-side applications.
 
-## Get Started
+---
 
-1. Run `npm create-tambo@latest my-tambo-app` for a new project
+## 🌟 Key Features
 
-2. `npm install`
+### 1. Interactive AI Quizzes (`QuizCard`)
+Test your knowledge with deep-dive technical questions generated on the fly.
+- **Instant Feedback:** Green/Red visual cues for immediate learning.
+- **Deep Context:** Detailed explanations reveal after selection to reinforce concepts.
+- **Celebration:** Confetti explosions for correct answers!
 
-3. `npx tambo init`
+### 2. Bug Squashing Sandbox (`BuggySandbox`)
+A "LeetCode-style" game for debugging real-world logic errors.
+- **Multi-Language Support:** Solve challenges in **JavaScript, Python, C, or C++**.
+- **Integrated Editor:** Powered by Monaco (VS Code's engine).
+- **In-place Updates:** AI updates the sandbox in real-time as you switch languages or request new hints.
+- **Validation:** Compare your fix against the solution logic with one click.
 
-- or rename `example.env.local` to `.env.local` and add your tambo API key you can get for free [here](https://tambo.co/dashboard).
+### 3. Algorithm Race (`AlgoRace`)
+Visualize performance complexity (Big-O) like never before.
+- **Side-by-Side Duel:** Watch two algorithms (e.g., Bubble Sort vs. Quick Sort) compete on the same data.
+- **Sequential Execution:** Tracks run one-by-one for clear auditory and visual focus.
+- **Sonification:** Hear the sort! Pitch shifts based on element values, turning data into music.
+- **Winner Podium:** Automatic timing and victory highlighting for the most efficient algorithm.
 
-4. Run `npm run dev` and go to `localhost:3000` to use the app!
+---
 
-## Customizing
+## 🛠️ Tech Stack
 
-### Change what components tambo can control
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+- **AI Integration:** [Tambo SDK](https://tambo.co/)
+- **Styling:** Tailwind CSS + Framer Motion
+- **Editor:** @monaco-editor/react
+- **Audio:** Web Audio API
+- **Celebrations:** canvas-confetti
 
-You can see how components are registered with tambo in `src/lib/tambo.ts`:
+---
 
-```tsx
-export const components: TamboComponent[] = [
-  {
-    name: "Graph",
-    description:
-      "A component that renders various types of charts (bar, line, pie) using Recharts. Supports customizable data visualization with labels, datasets, and styling options.",
-    component: Graph,
-    propsSchema: graphSchema,
-  },
-  // Add more components here
-];
-```
+## 🚀 Getting Started
 
-You can install the graph component into any project with:
+### 1. Prerequisites
+- Node.js 20+ 
+- A Tambo API Key ([Get one here](https://tambo.co/dashboard))
 
+### 2. Installation
 ```bash
-npx tambo add graph
+git clone <your-repo-url>
+cd tambo-default
+npm install
 ```
 
-The example Graph component demonstrates several key features:
-
-- Different prop types (strings, arrays, enums, nested objects)
-- Multiple chart types (bar, line, pie)
-- Customizable styling (variants, sizes)
-- Optional configurations (title, legend, colors)
-- Data visualization capabilities
-
-Update the `components` array with any component(s) you want tambo to be able to use in a response!
-
-You can find more information about the options [here](https://docs.tambo.co/concepts/generative-interfaces/generative-components)
-
-### Add tools for tambo to use
-
-Tools are defined with `inputSchema` and `outputSchema`:
-
-```tsx
-export const tools: TamboTool[] = [
-  {
-    name: "globalPopulation",
-    description:
-      "A tool to get global population trends with optional year range filtering",
-    tool: getGlobalPopulationTrend,
-    inputSchema: z.object({
-      startYear: z.number().optional(),
-      endYear: z.number().optional(),
-    }),
-    outputSchema: z.array(
-      z.object({
-        year: z.number(),
-        population: z.number(),
-        growthRate: z.number(),
-      }),
-    ),
-  },
-];
+### 3. Environment Setup
+Create a `.env.local` file in the root:
+```env
+NEXT_PUBLIC_TAMBO_API_KEY=your_api_key_here
 ```
 
-Find more information about tools [here.](https://docs.tambo.co/concepts/tools)
-
-### The Magic of Tambo Requires the TamboProvider
-
-Make sure in the TamboProvider wrapped around your app:
-
-```tsx
-...
-<TamboProvider
-  apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
-  components={components} // Array of components to control
-  tools={tools} // Array of tools it can use
->
-  {children}
-</TamboProvider>
+### 4. Run Development Server
+```bash
+npm run dev
 ```
+Open [http://localhost:3000](http://localhost:3000) to view the landing page.
 
-In this example we do this in the `Layout.tsx` file, but you can do it anywhere in your app that is a client component.
+---
 
-### Voice input
+## 📂 Project Structure
 
-The template includes a `DictationButton` component using the `useTamboVoice` hook for speech-to-text input.
+- `src/components/`: Core interactive modules (`QuizCard`, `BuggySandbox`, `AlgoRace`).
+- `src/app/page.tsx`: Modern landing page with feature cards.
+- `src/app/chat/page.tsx`: The primary interactive AI interface.
+- `src/lib/tambo.ts`: Central registry for Tambo components and schemas.
 
-### MCP (Model Context Protocol)
+---
 
-The template includes MCP support for connecting to external tools and resources. You can use the MCP hooks from `@tambo-ai/react/mcp`:
+## 🏆 Why this project?
 
-- `useTamboMcpPromptList` - List available prompts from MCP servers
-- `useTamboMcpPrompt` - Get a specific prompt
-- `useTamboMcpResourceList` - List available resources
-
-See `src/components/tambo/mcp-components.tsx` for example usage.
-
-### Change where component responses are shown
-
-The components used by tambo are shown alongside the message response from tambo within the chat thread, but you can have the result components show wherever you like by accessing the latest thread message's `renderedComponent` field:
-
-```tsx
-const { thread } = useTambo();
-const latestComponent =
-  thread?.messages[thread.messages.length - 1]?.renderedComponent;
-
-return (
-  <div>
-    {latestComponent && (
-      <div className="my-custom-wrapper">{latestComponent}</div>
-    )}
-  </div>
-);
-```
-
-For more detailed documentation, visit [Tambo's official docs](https://docs.tambo.co).
+This project showcases the power of **Interactable Generative UI**. Instead of the AI simply *explaining* a concept, it *builds* a specialized tool for the user to practice that concept. By removing the friction of manual setup and providing a polished, high-feedback environment, **DevEdu AI** represents the future of developer education.
