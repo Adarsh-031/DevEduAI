@@ -86,7 +86,7 @@ const ThreadHistory = React.forwardRef<HTMLDivElement, ThreadHistoryProps>(
       isLoading,
       error,
       refetch,
-    } = useTamboThreadList({ contextKey });
+    } = useTamboThreadList();
 
     const {
       switchCurrentThread,
@@ -204,7 +204,7 @@ const ThreadHistoryHeader = React.forwardRef<
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
         className={cn(
-          "bg-container hover:bg-muted transition-colors p-1 hover:bg-backdrop rounded-md cursor-pointer",
+          "bg-container transition-colors p-1 hover:bg-backdrop rounded-md cursor-pointer",
           position === "left" ? "ml-auto" : "",
         )}
         aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -581,7 +581,7 @@ const ThreadOptionsDropdown = React.forwardRef<
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          className="min-w-[160px] text-xs bg-popover rounded-md p-1 shadow-md border border-border"
+          className="min-w-40 text-xs bg-popover rounded-md p-1 shadow-md border border-border"
           sideOffset={5}
           align="end"
         >
