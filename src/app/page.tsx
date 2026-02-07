@@ -9,7 +9,8 @@ import {
   ChevronRight, 
   Github,
   Code2,
-  Sparkles
+  Sparkles,
+  Server
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -34,6 +35,13 @@ const features = [
     icon: <Zap className="w-8 h-8 text-amber-500" />,
     query: "Run an AlgoRace between Bubble Sort and Quick Sort with 50 elements.",
     tag: "Visualization"
+  },
+  {
+    title: "System Architect",
+    description: "Scale a failing system in real-time. Balance traffic, replicas, and database capacity to fix latency.",
+    icon: <Server className="w-8 h-8 text-indigo-500" />,
+    query: "Create a SystemScaler scenario where a Black Friday sale is crashing the database.",
+    tag: "Simulation"
   }
 ];
 

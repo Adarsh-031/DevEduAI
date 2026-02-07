@@ -14,6 +14,7 @@ import { z } from "zod";
 import QuizCard, { quizCardSchema } from "@/components/QuizCard";
 import BuggySandbox, { buggySandboxSchema } from "@/components/BuggySandbox";
 import AlgoRace from "@/components/AlgoRace";
+import SystemScaler, { systemScalerSchema } from "@/components/SystemScaler";
 
 /**
  * tools
@@ -57,6 +58,12 @@ export const components: TamboComponent[] = [
       algoB: z.enum(["Bubble Sort", "Selection Sort", "Quick Sort", "Merge Sort"]).describe("The name of the second algorithm"),
       dataSize: z.number().describe("The size of the array to sort (e.g. 50)"),
     }),
+  },
+  {
+    name: "SystemScaler",
+    description: "A system design simulator where users scale resources to handle traffic and reduce latency.",
+    component: SystemScaler,
+    propsSchema: systemScalerSchema,
   },
   // Add more components here
 ];
